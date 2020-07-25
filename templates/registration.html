@@ -5,9 +5,19 @@
 {% endblock %}
 
 {% block content %}
-    <div class="jumbotron text-center"; style="background-color: #5507f0; color: white;">
-        <h1>Register</h1>
-    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{{ url_for('index') }}">Pitch-In</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="{{ url_for('login') }}">Login <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link active" href="{{ url_for('registration') }}">Register</a>
+            </div>
+        </div>
+    </nav>
     <div class="content">
         <form action="#" method="POST" style="width: 450px;">
             <label for="username">Username</label>
