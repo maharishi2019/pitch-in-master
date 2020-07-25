@@ -1,0 +1,12 @@
+.form-div{
+    margin-left: 35%; 
+    margin-top: 10%; 
+    padding-left: 30px; 
+    padding-top: 50px; 
+    padding-bottom: 50px; 
+    width: 30%; 
+    box-shadow: 1px 1px 5px black; 
+}
+.form-heading {
+    margin-bottom: 30px; 
+}
