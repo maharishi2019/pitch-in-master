@@ -69,9 +69,10 @@ def registration():
     else:
         return render_template("registration.html")
   
-@app.route("/new_post/<string:username>", methods=["POST", "GET"])
-def new_post(username):
+@app.route("/new_post/", methods=["POST", "GET"])
+def new_post():
     if request.method == "POST":
+        username = session['user']
         with open("entries.json") as file:
             contents = json.load(file)['Entries']
             userData = contents[username]
@@ -81,6 +82,7 @@ def new_post(username):
         
     else:
         with open("entries.json") as file:
+            username = session['user']
             contents = json.load(file)['Entries']
             userData = contents[username]
             items = userData['items']

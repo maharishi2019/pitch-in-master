@@ -5,34 +5,37 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Register</h1>
-    <form action="#" method="POST">
-        <label for="username">Username</label><br>
-        <input type="text" name="username" required autocomplete="off"><br>
-        <label for="email">Email</label><br>
-        <input type="text" name="email" required autocomplete="off"><br>
-        <label for="password">Password</label><br>
-        <input type="password" name="password" required><br>
-        <label for="country">Country</label><br>
-        <select name="country" class="countries" id="countryId">
-            <option value="">Select Country</option>
-        </select><br>
-        <label for="country">State</label><br>
-        <select name="state" class="states" id="stateId">
-            <option value="">Select State</option>
-        </select><br>
-        <label for="country">City</label><br>
-        <select name="city" class="cities" id="cityId">
-            <option value="">Select City</option>
-        </select><br>
-        <input type="submit" value="Submit">
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                <p style="color:red;">{{ message }}</p>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
-    </form>
-    <a href="{{ url_for('login') }}">Already have an account?</a>
+    <div class="jumbotron text-center"; style="background-color: #5507f0; color: white;">
+        <h1>Register</h1>
+    </div>
+    <div class="content">
+        <form action="#" method="POST">
+            <input type="text" name="username" required autocomplete="off"><br>
+            <label for="email">Email</label><br>
+            <input type="text" name="email" required autocomplete="off"><br>
+            <label for="password">Password</label><br>
+            <input type="password" name="password" required><br><br>
+            <label for="country">Country</label><br>
+            <select name="country" class="countries" id="countryId">
+                <option value="">Select Country</option>
+            </select><br><br>
+            <label for="country">State</label><br>
+            <select name="state" class="states" id="stateId">
+                <option value="">Select State</option>
+            </select><br><br>
+            <label for="country">City</label><br>
+            <select name="city" class="cities" id="cityId">
+                <option value="">Select City</option>
+            </select><br><br>
+            <input type="submit" value="Submit" class="input-sm">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <p style="color:black;">{{ message }}</p>
+                    {% endfor %}
+                {% endif   %}
+            {% endwith %}
+        </form>
+        <a href="{{ url_for('login') }}">Already have an account?</a>
+    </div>
 {% endblock %}

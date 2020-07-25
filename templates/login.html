@@ -5,17 +5,19 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Login</h1>
+    <div class="jumbotron text-center"; style="background-color: #5507f0; color: white;">
+        <h1>Login</h1>
+    </div>
     <form action="#" method="POST">
         <label for="username">Username</label><br>
-        <input type="text" name="username" required autocomplete="off"><br>
+        <input type="text" name="username" required autocomplete="off"><br><br>
         <label for="password">Password</label><br>
         <input type="password" name="password" required><br>
         <input type="submit" value="Submit">
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 {% for message in messages %}
-                <p style="color:red;">{{ message }}</p>
+                <p style="color:black;">{{ message }}</p>
                 {% endfor %}
             {% endif %}
         {% endwith %}
