@@ -30,16 +30,17 @@
                 {% endfor %}
             {% endif %}
         {% endwith %}
-        <style>
-            #us:hover {
-                background-color: yellow;
-            }
-        </style>
         
         {% for i in same_location %}  
             {% if(i.username != session["user"]) %}
             <a href = "{{ url_for('visit', usr=i.username) }}">
-                <h1>{{ i.username }}</h1>
+                
+                <h1 id = "user_info">{{ i.username }}</h1>
+                <style>
+                    #user_info{
+                        padding:50px
+                    }
+                </style>
             </a>
             {% endif %}
         {% endfor %}
