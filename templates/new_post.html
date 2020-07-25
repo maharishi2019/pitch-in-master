@@ -22,16 +22,21 @@
         </div>
     </nav>
     <br><br>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-primary" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
     <div class="form-div">
         <form action="#" method="POST">
             <h3>New Post</h3><br>
             <textarea name="checklist" class="form-control" style="width: 300px;"></textarea>
             <br>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Publish</button>
         </form>
     </div>
-
-    {% for i in checklist %}
-        <ul>{{ i }}</ul>
-    {% endfor %}
 {% endblock %}

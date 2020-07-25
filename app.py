@@ -66,23 +66,30 @@ def registration():
         else:
             new_user = User(username, password, email, location)
             print(location)
+
             db.session.add(new_user)
             db.session.commit()
+
             session.permenant = True
             session["user"] = username
             session["logged_in"] = True
+
             a_file = open("entries.json", "r+")
             json_object = json.load(a_file)
             a_file.close()
+
             y = {
                 "name": username, 
                 "checklist":[],
                 "committed":[]
             }
+            
             json_object["entries"].append(y)
+
             a_file = open("entries.json", "w")
             json.dump(json_object, a_file)
             a_file.close()
+
             return redirect(url_for("index"))
     else:
         return render_template("registration.html")
@@ -91,16 +98,16 @@ def registration():
 def new_post():
     if(request.method == "POST"):
         new_checklist = request.form["checklist"].split("\r\n")
-        a_file = open("entries.json", "r")
-        json_object = json.load(a_file)
+        with open("entries.json", "r") as a_file:
+            json_object = json.load(a_file)
         a_file.close()
-        session["user"] = self.username
         for i in json_object["entries"]:
             if i["name"] == session["user"]:
                 i["checklist"] = new_checklist
         a_file = open("entries.json", "w")
         json.dump(json_object, a_file)
         a_file.close()
+        flash("Successfully published!")
         return redirect(url_for("new_post"))
     else:
         checklist = []
@@ -134,7 +141,6 @@ def visit():
             names = i["name"]
             if names == user:
                 items = i["checklist"]
-
     return render_template("explore.html", user=user, items=items)
 
 @app.route("/<item>")
@@ -144,7 +150,8 @@ def commit(item):
     a_file.close()
     for i in json_object["entries"]:
         if i["name"] == session["user"]:
-            i["commit"].append(item)
+            i["committed"].append(item)
+            print(i["commited"])
     a_file = open("entries.json", "w")
     json.dump(json_object, a_file)
     return redirect(url_for("index"))
