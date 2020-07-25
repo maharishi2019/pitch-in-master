@@ -126,6 +126,8 @@ def feed():
 
 @app.route("/<usr>")
 def visit(usr):
+    user = usr
+    items = []
     with open('entries.json') as data:
         entry = json.load(data)
         for i in entry['entries']:
