@@ -27,7 +27,7 @@
             <th>Items</th>
             <th>Committed</th>
         </tr>
-        {% for username in usernames if username is not None %}{% for item in checklist %}{% for commit in commits %}
+        {% for username in usernames if username %}{% for item in checklist %}{% for commit in commits %}
         <tr>
             <td>{{ username }}</td>
             <td>{{ item }}</td>
