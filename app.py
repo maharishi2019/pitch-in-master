@@ -66,23 +66,30 @@ def registration():
         else:
             new_user = User(username, password, email, location)
             print(location)
+
             db.session.add(new_user)
             db.session.commit()
+
             session.permenant = True
             session["user"] = username
             session["logged_in"] = True
+
             a_file = open("entries.json", "r+")
             json_object = json.load(a_file)
             a_file.close()
+
             y = {
                 "name": username, 
                 "checklist":[],
                 "committed":[]
             }
+            
             json_object["entries"].append(y)
+
             a_file = open("entries.json", "w")
             json.dump(json_object, a_file)
             a_file.close()
+
             return redirect(url_for("index"))
     else:
         return render_template("registration.html")
@@ -144,7 +151,8 @@ def commit(item):
     a_file.close()
     for i in json_object["entries"]:
         if i["name"] == session["user"]:
-            i["commit"].append(item)
+            i["committed"].append(item)
+            print(i["commited"])
     a_file = open("entries.json", "w")
     json.dump(json_object, a_file)
     return redirect(url_for("index"))
