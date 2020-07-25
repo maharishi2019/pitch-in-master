@@ -24,7 +24,12 @@ class User(db.Model):
         
 @app.route("/")
 def index():
-    return render_template("index.html")
+    if "user" in session:
+        x = User.query.filter_by(username=session["user"]).first().location
+        same_location = User.query.filter_by(location=x).all()
+        return render_template("index.html", same_location=same_location)
+    else:
+        return render_template("index.html")
 
 @app.route("/login", methods=["POST", "GET"])
 def login():
@@ -71,7 +76,7 @@ def registration():
         return render_template("registration.html")
   
 @app.route("/new_post", methods=["POST", "GET"])
-def new_post(username):
+def new_post():
     if request.method == "POST":
         with open("entries.json") as file:
             contents = json.load(file)['Entries']
