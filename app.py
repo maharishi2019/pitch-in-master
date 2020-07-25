@@ -175,6 +175,7 @@ def change_password():
 
         if(User.query.filter_by(username=session["user"]).first().password == current_password):
             User.query.filter_by(username=session["user"]).first().password = new_password
+            db.session.commit()
             flash("Password change successful!")
             return redirect(url_for("index"))
         else:
@@ -183,6 +184,22 @@ def change_password():
     else:
         return redirect(url_for("profile_page"))
         
+@app.route("/change_email", methods=["POST", "GET"])
+def change_email():
+    if(request.method == "POST"):
+        current_email = request.form["current-email"]
+        new_email = request.form["new-email"]
+
+        if(User.query.filter_by(username=session["user"]).first().email == current_email):
+            User.query.filter_by(username=session["user"]).first().email = new_email
+            db.session.commit()
+            flash("Email change successful!")
+            return redirect(url_for("index"))
+        else:
+            flash("Email change unsuccessful!")
+            return redirect(url_for("index"))
+    else:
+        return redirect(url_for("profile_page"))
 if __name__ == "__main__":
     db.create_all()
     app.run(debug=True)

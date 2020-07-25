@@ -20,13 +20,22 @@
             </div>
         </div>
     </nav>
-    <div class="form-div">
+    <div class="form-div bg-light">
+        <h3 class="form-heading">Change Password</h3>
         <form action="{{ url_for('change_password') }}" method="POST" style="width: 75%; padding-left: 15px; padding-top: 15px;">
             <label for="current-password">Current Password</label><br>
             <input type="password" class="form-control" name="current-password" required><br>
             <label for="new-password">New Password</label><br>
             <input type="password" class="form-control" name="new-password" required><br>
             <input type="submit" value="Change Password" class="btn btn-primary">
+        </form>
+        <h3 class="form-heading">Change Email</h3>
+        <form action="{{ url_for('change_email') }}" method="POST" style="width: 75%; padding-left: 15px; padding-top: 15px;">
+            <label for="current-email">Current Email</label><br>
+            <input type="text" class="form-control" name="current-email" required><br>
+            <label for="new-email">New Email</label><br>
+            <input type="text" class="form-control" name="new-email" required><br>
+            <input type="submit" value="Change Email" class="btn btn-primary">
             {% with messages = get_flashed_messages() %}
                 {% if messages %}
                     {% for message in messages %}
