@@ -27,7 +27,9 @@
         </style>
         
         {% for i in same_location %}  
-            <div id = "us"><h1>{{ i.username }}</h1></div>
+            <a href = "visiting_page.html" id = "us">
+                <h1>{{ i.username }}</h1>
+            </a>
             
 
         {% endfor %}

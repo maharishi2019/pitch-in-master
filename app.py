@@ -114,10 +114,28 @@ def new_post():
 def feed():
     return render_template("feed.html")
     
+
+@app.route("/<usr>")
+def visit(usr):
+    with open('entries.json') as data:
+        entry = json.load(data)
+        for i in entry['entries']:
+            names = i["name"]
+            if names == usr:
+
+                items = i["checklist"]
+            
+    return render_template("visiting_page.html", items=items)
+
+
 @app.route("/logout")
 def logout():
     session.clear()
     return redirect(url_for("index"))
+
+
+
+
 
 if __name__ == "__main__":
     db.create_all()
