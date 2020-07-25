@@ -110,9 +110,18 @@ def new_post():
                     checklist = i["checklist"]
         return render_template("new_post.html", checklist=checklist)
 
-@app.route("/feed", methods=["POST", "GET"])
+@app.route("/feed", methods=["GET", "POST"])
 def feed():
-    return render_template("feed.html")
+    if request.method == "GET":
+        with open("entries.json") as file:
+            entries = json.load(file)['entries']
+            usernames, checklist, commits = ([],[],[])
+            for entry in entries:
+                usernames.append(entry["name"])
+                checklist.append(entry["checklist"])
+                commits.append(entry["committed"])
+
+    return render_template("feed.html", usernames=usernames, checklist=checklist, commits=commits)
     
 @app.route("/logout")
 def logout():

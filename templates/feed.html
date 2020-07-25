@@ -20,5 +20,20 @@
             </div>
         </div>
     </nav>
+
+    <table class="table">
+        <tr>
+            <th>Tasks</th>
+            <th>Date Created</th>
+            <th>Actions</th>
+        </tr>
+        {% for username in usernames if username is not None %}{% for item in checklist %}{% for commit in commits %}
+        <tr>
+            <td>{{ username }}</td>
+            <td>{{ item }}</td>
+            <td>{{ commit }}</td>
+        </tr>
+    {% endfor %}{% endfor %}{% endfor %}
+    </table>
     
 {% endblock %}
