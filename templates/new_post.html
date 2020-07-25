@@ -6,7 +6,7 @@
 
 {% block content %}
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Pitch-In</a>
+        <a class="navbar-brand" href="{{ url_for('index') }}">Pitch-In</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -21,11 +21,15 @@
             </div>
         </div>
     </nav>
-    {% for i in checklist %}
-        <li>{{ i }}</li>
-    {% endfor %}
+    <br><br>
     <form action="#" method="POST">
-        <textarea name="checklist"></textarea>
-        <input type="submit" value="Publish">
+        <h3>New Post</h3><br>
+        <textarea name="checklist" class="form-control" style="width: 300px;"></textarea>
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+
+    {% for i in checklist %}
+        <ul>{{ i }}</ul>
+    {% endfor %}
 {% endblock %}

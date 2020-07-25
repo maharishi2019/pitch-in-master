@@ -6,7 +6,7 @@
 {% block content %}
     {% if "logged_in" in session %}
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Pitch-In</a>
+            <a class="navbar-brand" href="{{ url_for('index') }}">Pitch-In</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -37,11 +37,11 @@
         </style>
         
         {% for i in same_location %}  
+            {% if(i.username != session["user"]) %}
             <a href = "{{ url_for('visit', usr = i.username) }}" id = "us">
                 <h1>{{ i.username }}</h1>
             </a>
-            
-
+            {% endif %}
         {% endfor %}
     {% else %}
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -57,7 +57,7 @@
                 </div>
             </div>
         </nav>
-        <div class="content">
+        <div class="content" style="padding-left: 15px; padding-top: 15px;">
             <h3>Team</h3>
             <p>Mahanth Mohan</p>
             <p>Gaurav Dharmadikarai</p>
