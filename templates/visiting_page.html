@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block heading %}
+    <title>Bob</title>
+{% endblock %}
+
+{% block content %}
+    {% for i in items %}
+        <p>{{i}}</p>
+    {% endfor %}
+{% endblock %}

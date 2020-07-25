@@ -30,10 +30,18 @@
                 {% endfor %}
             {% endif %}
         {% endwith %}
+        <style>
+            #us:hover {
+                background-color: yellow;
+            }
+        </style>
+        
         {% for i in same_location %}  
-            {% if i.username != session["user"] %}
+            <a href = "visiting_page.html" id = "us">
                 <h1>{{ i.username }}</h1>
-            {% endif %}
+            </a>
+            
+
         {% endfor %}
     {% else %}
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -49,5 +57,11 @@
                 </div>
             </div>
         </nav>
+        <div class="content">
+            <h3>Team</h3>
+            <p>Mahanth Mohan</p>
+            <p>Gaurav Dharmadikarai</p>
+            <p>Maharishi Rajarethenam</p>
+        </div>
     {% endif %}
 {% endblock %}
