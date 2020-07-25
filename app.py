@@ -134,7 +134,6 @@ def visit(usr):
             names = i["name"]
             if names == usr:
                 items = i["checklist"]
-
     return render_template("explore.html", user=user, items=items)
 
 @app.route("/<item>")
