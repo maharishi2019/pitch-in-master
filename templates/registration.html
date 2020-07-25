@@ -10,24 +10,25 @@
     </div>
     <div class="content">
         <form action="#" method="POST">
-            <input type="text" name="username" required autocomplete="off"><br>
+            <label for="username">Username</label>
+            <input type="text" class="form-control" name="username" required autocomplete="off"><br>
             <label for="email">Email</label><br>
-            <input type="text" name="email" required autocomplete="off"><br>
+            <input type="text" class="form-control" name="email" required autocomplete="off"><br>
             <label for="password">Password</label><br>
-            <input type="password" name="password" required><br><br>
+            <input type="password" class="form-control" name="password" required><br>
             <label for="country">Country</label><br>
             <select name="country" class="countries" id="countryId">
                 <option value="">Select Country</option>
-            </select><br><br>
+            </select><br>
             <label for="country">State</label><br>
             <select name="state" class="states" id="stateId">
                 <option value="">Select State</option>
-            </select><br><br>
+            </select><br>
             <label for="country">City</label><br>
             <select name="city" class="cities" id="cityId">
                 <option value="">Select City</option>
             </select><br><br>
-            <input type="submit" value="Submit" class="input-sm">
+            <input type="submit" value="Submit" class="btn btn-primary">
             {% with messages = get_flashed_messages() %}
                 {% if messages %}
                     {% for message in messages %}
