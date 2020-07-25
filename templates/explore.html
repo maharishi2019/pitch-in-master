@@ -21,10 +21,10 @@
         </div>
     </nav>
     <h2>{{user}}'s Page</h2>
-    {% for item in items %}
+    {% for i in items %}
         <div class="column">
-            <div class="container-fluid bg-light">{{ item }}</div>
+            <div class="container-fluid bg-light">{{ i }}</div>
         </div>
-        <a href="{{ url_for('commit', item=item)}}">Commit</a>
+        <a href="{{ url_for('commit', item=i)}}">Commit</a>
     {% endfor %}
 {% endblock %}
