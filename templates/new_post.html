@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block heading %}
+    <title>Pitch In</title>
+{% endblock %}
+
+{% block content %}
+    <div class="jumbotron text-center"; style="background-color: #00FF00; color: white;">
+        <h1>New Post</h1>
+    </div>
+    <form action="/items" method="POST" style="text-align: center;">
+        <input type="text" class="form-control input-sm" id="content" name="content">
+        <button type="submit" class="btn btn-primary">Add a new item</button>
+    </form>
+
+    <br><br>
+
+    <div class="content">
+        <table class="table">
+                <tr>
+                    <th>User</th>
+                    <th>Items</th>
+                    <th>Actions</th>
+                </tr>
+                {% for item in items %}{% for commit in commits %}
+                <tr>
+                    <td>{{ item }}</td>
+                    <td>{{ commit }}</td>
+                    <td>
+                        <a href="/delete/{{item.id}}">Delete Task</a><br>
+                    </td>
+                </tr>
+            {% endfor %}{% endfor %}
+        </table>
+    </div>
+{% endblock %}

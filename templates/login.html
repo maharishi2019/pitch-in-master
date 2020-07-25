@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block heading %}
+    <title>Login</title>
+{% endblock %}
+
+{% block content %}
+    <h1>Login</h1>
+    <form action="#" method="POST">
+        <label for="username">Username</label><br>
+        <input type="text" name="username" required autocomplete="off"><br>
+        <label for="password">Password</label><br>
+        <input type="password" name="password" required><br>
+        <input type="submit" value="Submit">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                <p style="color:red;">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </form>
+    <a href="{{ url_for('registration') }}">Don't have an account?</a>
+{% endblock %}
