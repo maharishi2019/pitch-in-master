@@ -100,6 +100,7 @@ def new_post():
         a_file = open("entries.json", "w")
         json.dump(json_object, a_file)
         a_file.close()
+        flash("Successfully published!")
         return redirect(url_for("new_post"))
     else:
         checklist = []
