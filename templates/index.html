@@ -20,13 +20,20 @@
                 </div>
             </div>
         </nav>
-        {% for i in same_location %}
-            <h1>{{ i.username }}</h1>
+        <style>
+            #us:hover {
+                background-color: yellow;
+            }
+        </style>
+        
+        {% for i in same_location %}  
+            <div id = "us"><h1>{{ i.username }}</h1></div>
             
+
         {% endfor %}
     {% else %}
-        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #4e03fc; color: white;">
-            <a class="navbar-brand" href="#">Pitch-In</a>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="{{ url_for('index') }}">Pitch-In</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>

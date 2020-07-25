@@ -5,15 +5,25 @@
 {% endblock %}
 
 {% block content %}
-    <div class="jumbotron text-center"; style="background-color: #5507f0; color: white;">
-        <h1>Login</h1>
-    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{{ url_for('index') }}">Pitch-In</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="{{ url_for('login') }}">Login <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="{{ url_for('registration') }}">Register</a>
+            </div>
+        </div>
+    </nav>
     <form action="#" method="POST" style="width: 450px;">
         <label for="username">Username</label><br>
         <input type="text" class="form-control" name="username" required autocomplete="off"><br>
         <label for="password">Password</label><br>
         <input type="password" class="form-control" name="password" required><br>
-        <input type="submit" value="Submit" class="btn btn-primary">
+        <input type="submit" value="Login" class="btn btn-primary">
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 {% for message in messages %}
