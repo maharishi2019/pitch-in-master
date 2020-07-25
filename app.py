@@ -26,7 +26,7 @@ class User(db.Model):
 def index():
     if "user" in session:
         x = User.query.filter_by(username=session["user"]).first()
-        same_location = User.query.filter_by(location=x).all()
+        same_location = User.query.filter_by(location=x.location).all()
         return render_template("index.html", same_location=same_location)
     else:
         return render_template("index.html")
