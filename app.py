@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 import json
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///users.sqlite3"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db.sqlite3"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.secret_key = "c2cf45d51cf3e8615ff0d24e6bd51fc3"
 
@@ -15,6 +15,7 @@ class User(db.Model):
     email = db.Column(db.String(255))
     password = db.Column(db.String(255))
     location = db.Column(db.String(255))
+    
     def __init__(self, username, password, email, location):
         self.username = username
         self.email = email
