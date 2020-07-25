@@ -70,7 +70,7 @@ def registration():
     else:
         return render_template("registration.html")
   
-@app.route("/new_post", methods=["POST", "GET"])
+@app.route("/new_post/<string:username>", methods=["POST", "GET"])
 def new_post(username):
     if request.method == "POST":
         with open("entries.json") as file:
@@ -87,7 +87,7 @@ def new_post(username):
             items = userData['items']
             committed = userData['committed']
             file.close()
-        return render_template('new_post.html', items=items, commits=committed)
+        return render_template('new_post.html', items=items, commits=committed, users=userData)
 
 @app.route("/feed", methods=["POST", "GET"])
 def feed():
