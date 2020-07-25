@@ -123,7 +123,6 @@ def feed():
 
     return render_template("feed.html", usernames=usernames, checklist=checklist, commits=commits)
     
-
 @app.route("/<usr>")
 def visit(usr):
     with open('entries.json') as data:
@@ -136,15 +135,10 @@ def visit(usr):
             
     return render_template("visiting_page.html", items=items)
 
-
 @app.route("/logout")
 def logout():
     session.clear()
     return redirect(url_for("index"))
-
-
-
-
 
 @app.route("/profile_page")
 def profile_page():
