@@ -128,6 +128,10 @@ def logout():
     session.clear()
     return redirect(url_for("index"))
 
+@app.route("/profile_page")
+def profile_page():
+    return render_template("profile_page.html")
+
 if __name__ == "__main__":
     db.create_all()
     app.run(debug=True)
