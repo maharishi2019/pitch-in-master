@@ -123,7 +123,7 @@ def feed():
     if request.method == "GET":
         with open("entries.json") as file:
             entries = json.load(file)['entries']
-            usernames, checklist, commits = [[],[],[]]
+            usernames, checklist, commits = ([],[],[])
             for entry in entries:
                 usernames.append(entry["name"])
                 checklist.append(entry["checklist"])
@@ -182,6 +182,7 @@ def change_password():
             return redirect(url_for("index"))
     else:
         return redirect(url_for("profile_page"))
+        
 if __name__ == "__main__":
     db.create_all()
     app.run(debug=True)
