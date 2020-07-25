@@ -134,7 +134,7 @@ def visit(usr):
             if names == usr:
                 items = i["checklist"]
 
-    return render_template("visiting_page.html", user=user, items=items)
+    return render_template("explore.html", user=user, items=items)
 
 @app.route("/<item>")
 def commit(item):
