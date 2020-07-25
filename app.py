@@ -132,11 +132,22 @@ def visit(usr):
         for i in entry['entries']:
             names = i["name"]
             if names == usr:
-
                 items = i["checklist"]
-            
+
     return render_template("visiting_page.html", user=user, items=items)
 
+@app.route("/<item>")
+def commit(item):
+    a_file = open("entries.json", "r+")
+    json_object = json.load(a_file)
+    a_file.close()
+    for i in json_object["entries"]:
+        if i["name"] == session["user"]:
+            i["commit"].append(item)
+    a_file = open("entries.json", "w")
+    json.dump(json_object, a_file)
+    return redirect(url_for("index"))
+    
 @app.route("/logout")
 def logout():
     session.clear()
