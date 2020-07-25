@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 import json
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///users.sqlite3"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db.sqlite3"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.secret_key = "c2cf45d51cf3e8615ff0d24e6bd51fc3"
 
@@ -15,6 +15,7 @@ class User(db.Model):
     email = db.Column(db.String(255))
     password = db.Column(db.String(255))
     location = db.Column(db.String(255))
+
     def __init__(self, username, password, email, location):
         self.username = username
         self.email = email
@@ -23,7 +24,12 @@ class User(db.Model):
         
 @app.route("/")
 def index():
-    return render_template("index.html")
+    if "user" in session:
+        x = User.query.filter_by(username=session["user"]).first().location
+        same_location = User.query.filter_by(location=x).all()
+        return render_template("index.html", same_location=same_location)
+    else:
+        return render_template("index.html")
 
 @app.route("/login", methods=["POST", "GET"])
 def login():
@@ -69,7 +75,7 @@ def registration():
     else:
         return render_template("registration.html")
   
-@app.route("/new_post/", methods=["POST", "GET"])
+@app.route("/new_post", methods=["POST", "GET"])
 def new_post():
     if request.method == "POST":
         username = session['user']
@@ -79,7 +85,6 @@ def new_post():
             items = userData['items'].append(item)
             committed = userData['committed']
             file.close()
-        
     else:
         with open("entries.json") as file:
             username = session['user']
