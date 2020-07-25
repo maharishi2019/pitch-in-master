@@ -20,21 +20,22 @@
             </div>
         </div>
     </nav>
-
-    <form action="{{ url_for('change_password') }}" method="POST" style="width: 450px; padding-left: 15px; padding-top: 15px;">
-        <label for="current-password">Current Password</label><br>
-        <input type="password" class="form-control" name="current-password" required><br>
-        <label for="new-password">New Password</label><br>
-        <input type="password" class="form-control" name="new-password" required><br>
-        <input type="submit" value="Change Password" class="btn btn-primary">
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                <div class="alert alert-primary" role="alert">
-                    {{ message }}
-                </div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
-    </form>
+    <div class="form-div">
+        <form action="{{ url_for('change_password') }}" method="POST" style="width: 75%;">
+            <label for="current-password">Current Password</label><br>
+            <input type="password" class="form-control" name="current-password" required><br>
+            <label for="new-password">New Password</label><br>
+            <input type="password" class="form-control" name="new-password" required><br>
+            <input type="submit" value="Change Password" class="btn btn-primary">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-primary" role="alert">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </form>
+    </div>
 {% endblock %}

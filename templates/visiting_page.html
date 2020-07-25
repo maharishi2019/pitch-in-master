@@ -21,4 +21,8 @@
         </div>
     </nav>
     <h3>{{user}}'s Page</h3>
+    {% for i in items %}
+        <h5>{{ i }}</h5>
+        <a href="{{ url_for('commit', item=i) }}">Commit</a>
+    {% endfor %}
 {% endblock %}
