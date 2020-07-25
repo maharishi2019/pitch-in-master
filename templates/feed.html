@@ -28,7 +28,7 @@
             <th>Items</th>
             <th>Committed</th>
         </tr>
-            {% for x in range(0, amount_of_users): %}
+            {% for x in range(usernames|length): %}
             <tr>
                 <td>{{ usernames[x] }}</td>
                 <td>{{ checklist[x] }}</td>
