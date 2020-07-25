@@ -20,17 +20,20 @@
                 <tr>
                     <th>User</th>
                     <th>Items</th>
+                    <th>Committed</th>
                     <th>Actions</th>
                 </tr>
-                {% for item in items %}{% for commit in commits %}
+                {% for user in users if user is not None %}{% for item in items %}{% for commit in commits %}
                 <tr>
+                    <td>{{ user }}</td>
                     <td>{{ item }}</td>
                     <td>{{ commit }}</td>
+                    <td>Actions</td>
                     <td>
                         <a href="/delete/{{item.id}}">Delete Task</a><br>
                     </td>
                 </tr>
-            {% endfor %}{% endfor %}
+            {% endfor %}{% endfor %}{% endfor %}
         </table>
     </div>
 {% endblock %}
