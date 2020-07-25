@@ -131,17 +131,16 @@ def feed():
 
     return render_template("feed.html", usernames=usernames, checklist=checklist, commits=commits, leng=len(usernames))
     
-@app.route("/<usr>")
-def visit(usr):
-    user = usr
+@app.route("/explore")
+def visit():
+    user = session["user"]
     items = []
     with open('entries.json') as data:
         entry = json.load(data)
         for i in entry['entries']:
             names = i["name"]
-            if names == usr:
+            if names == user:
                 items = i["checklist"]
-
     return render_template("explore.html", user=user, items=items)
 
 @app.route("/<item>")

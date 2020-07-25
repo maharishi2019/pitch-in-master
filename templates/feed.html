@@ -32,10 +32,32 @@
         {% for x in range(leng): %}
             <tr>
                 <td>{{ usernames[x] }}</td>
-                <td>{{ checklist[x] }}
-                    
+                <td>
+                    {% if usernames[x]|length > 0 %}
+                        {% for i in range(0, checklist[x]|length) %}
+                            {% if i == checklist[x]|length-1 %}
+                                {{ checklist[x][i] }}
+                            {% else %}
+                                {{ checklist[x][i] }},
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        - 
+                    {% endif %}
                 </td>
-                <td>{{ commits[x] }}</td>
+                <td>
+                    {% if commits[x]|length > 0 %}
+                        {% for i in range(0, commits[x]|length) %}
+                            {% if i == commits[x]|length-1 %}
+                                {{ commits[x][i] }}
+                            {% else %}
+                                {{ commits[x][i] }},
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        - 
+                    {% endif %}
+                </td>
             </tr>
 
             {% endfor %}
