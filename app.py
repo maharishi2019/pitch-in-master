@@ -71,29 +71,44 @@ def registration():
             session.permenant = True
             session["user"] = username
             session["logged_in"] = True
+            a_file = open("entries.json", "r+")
+            json_object = json.load(a_file)
+            a_file.close()
+            y = {
+                "name": username, 
+                "checklist":[],
+                "committed":[]
+            }
+            json_object["entries"].append(y)
+            a_file = open("entries.json", "w")
+            json.dump(json_object, a_file)
+            a_file.close()
             return redirect(url_for("index"))
     else:
         return render_template("registration.html")
   
 @app.route("/new_post", methods=["POST", "GET"])
 def new_post():
-    if request.method == "POST":
-        username = session['user']
-        with open("entries.json") as file:
-            contents = json.load(file)['Entries']
-            userData = contents[username]
-            items = userData['items'].append(item)
-            committed = userData['committed']
-            file.close()
+    if(request.method == "POST"):
+        new_checklist = request.form["checklist"].split("\r\n")
+        a_file = open("entries.json", "r")
+        json_object = json.load(a_file)
+        a_file.close()
+        for i in json_object["entries"]:
+            if i["name"] == session["user"]:
+                i["checklist"] = new_checklist
+        a_file = open("entries.json", "w")
+        json.dump(json_object, a_file)
+        a_file.close()
+        return redirect(url_for("new_post"))
     else:
-        with open("entries.json") as file:
-            username = session['user']
-            contents = json.load(file)['Entries']
-            userData = contents[username]
-            items = userData['items']
-            committed = userData['committed']
-            file.close()
-        return render_template('new_post.html', items=items, commits=committed, users=userData)
+        checklist = []
+        with open('entries.json') as json_file: 
+            data = json.load(json_file) 
+            for i in data['entries']:
+                if(i["name"] == session["user"]):
+                    checklist = i["checklist"]
+        return render_template("new_post.html", checklist=checklist)
 
 @app.route("/feed", methods=["POST", "GET"])
 def feed():

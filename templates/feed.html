@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block heading %}
+    <title>Feed</title>
+{% endblock %}
+
+{% block content %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Pitch-In</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="{{ url_for('index') }}">Explore <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link active" href="{{ url_for('feed') }}">Feed</a>
+                <a class="nav-item nav-link" href="{{ url_for('new_post') }}">New Post</a>
+                <a class="logout nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
+            </div>
+        </div>
+    </nav>
+    
+{% endblock %}
