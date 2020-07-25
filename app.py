@@ -146,15 +146,13 @@ def visit(usr):
 
 @app.route("/<item>")
 def commit(item):
-    a_file = open("entries.json", "r+")
-    json_object = json.load(a_file)
-    a_file.close()
-    for i in json_object["entries"]:
-        if i["name"] == session["user"]:
-            i["committed"].append(item)
-            print(i["commited"])
-    a_file = open("entries.json", "w")
-    json.dump(json_object, a_file)
+    with open("entries.json", "r+") as data:
+        json_object = json.load(data)
+        for i in json_object["entries"]:
+            if i["name"] == session["user"]:
+                i["committed"].append(item)
+                print(i["commited"])
+        
     return redirect(url_for("index"))
     
 @app.route("/logout")
