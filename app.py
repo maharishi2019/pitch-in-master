@@ -143,8 +143,8 @@ def visit(usr):
                 items = i["checklist"]
     return render_template("explore.html", user=user, items=items)
 
-@app.route("/<item>")
-def commit(item):
+@app.route("/commit/<item>")
+def commited(item):
     data = open("entries.json", "r")
     json_object = json.load(data)
     data.close()
