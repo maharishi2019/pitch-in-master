@@ -122,7 +122,7 @@ def feed():
                 checklist.append(entry["checklist"])
                 commits.append(entry["committed"])
 
-    return render_template("feed.html", usernames=usernames, checklist=checklist, commits=commits)
+    return render_template("feed.html", usernames=usernames, checklist=checklist, commits=commits, leng=len(usernames))
     
 @app.route("/<usr>")
 def visit(usr):
@@ -135,7 +135,7 @@ def visit(usr):
             if names == usr:
                 items = i["checklist"]
 
-    return render_template("visiting_page.html", user=user, items=items)
+    return render_template("explore.html", user=user, items=items)
 
 @app.route("/<item>")
 def commit(item):

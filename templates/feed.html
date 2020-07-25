@@ -28,10 +28,13 @@
             <th>Items</th>
             <th>Committed</th>
         </tr>
-            {% for x in range(usernames|length): %}
+
+        {% for x in range(leng): %}
             <tr>
                 <td>{{ usernames[x] }}</td>
-                <td>{{ checklist[x] }}</td>
+                <td>{{ checklist[x] }}
+                    
+                </td>
                 <td>{{ commits[x] }}</td>
             </tr>
 
