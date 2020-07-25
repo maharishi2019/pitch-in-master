@@ -136,7 +136,7 @@ def visit(usr):
 
                 items = i["checklist"]
             
-    return render_template("visiting_page.html", items=items)
+    return render_template("visiting_page.html", user=user, items=items)
 
 
 @app.route("/logout")
