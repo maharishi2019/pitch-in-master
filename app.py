@@ -15,7 +15,7 @@ class User(db.Model):
     email = db.Column(db.String(255))
     password = db.Column(db.String(255))
     location = db.Column(db.String(255))
-    
+
     def __init__(self, username, password, email, location):
         self.username = username
         self.email = email
@@ -70,7 +70,7 @@ def registration():
     else:
         return render_template("registration.html")
   
-@app.route("/new_post/<string:username>", methods=["POST", "GET"])
+@app.route("/new_post", methods=["POST", "GET"])
 def new_post(username):
     if request.method == "POST":
         with open("entries.json") as file:
@@ -79,7 +79,6 @@ def new_post(username):
             items = userData['items'].append(item)
             committed = userData['committed']
             file.close()
-        
     else:
         with open("entries.json") as file:
             contents = json.load(file)['Entries']
