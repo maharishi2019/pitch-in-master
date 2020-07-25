@@ -21,11 +21,15 @@
             </div>
         </div>
     </nav>
-    {% for i in checklist %}
-        <li>{{ i }}</li>
-    {% endfor %}
+    <br><br>
     <form action="#" method="POST">
-        <textarea name="checklist"></textarea>
-        <input type="submit" value="Publish">
+        <h3>New Post</h3><br>
+        <textarea name="checklist" class="form-control" style="width: 300px;"></textarea>
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+
+    {% for i in checklist %}
+        <ul>{{ i }}</ul>
+    {% endfor %}
 {% endblock %}

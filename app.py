@@ -115,7 +115,7 @@ def feed():
     if request.method == "GET":
         with open("entries.json") as file:
             entries = json.load(file)['entries']
-            usernames, checklist, commits = ([],[],[])
+            usernames, checklist, commits = [[],[],[]]
             for entry in entries:
                 usernames.append(entry["name"])
                 checklist.append(entry["checklist"])
