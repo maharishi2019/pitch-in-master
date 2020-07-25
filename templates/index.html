@@ -37,7 +37,7 @@
         </style>
         
         {% for i in same_location %}  
-            <a href = "visiting_page.html" id = "us">
+            <a href = "{{ url_for('visit', usr = i.username) }}" id = "us">
                 <h1>{{ i.username }}</h1>
             </a>
             
