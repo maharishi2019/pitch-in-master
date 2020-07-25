@@ -28,13 +28,14 @@
             <th>Items</th>
             <th>Committed</th>
         </tr>
-        {% for username in usernames if username %}{% for item in checklist %}{% for commit in commits %}
-        <tr>
-            <td>{{ username }}</td>
-            <td>{{ item }}</td>
-            <td>{{ commit }}</td>
-        </tr>
-    {% endfor %}{% endfor %}{% endfor %}
+        {% for x in range(1000): %}
+            <tr>
+                <td>{{ usernames[x] }}</td>
+                <td>{{ checklist[x] }}</td>
+                <td>{{ commits[x] }}</td>
+            </tr>
+        {% endfor %}
+
     </table>
     
 {% endblock %}
