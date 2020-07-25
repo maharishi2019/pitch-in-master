@@ -131,9 +131,9 @@ def feed():
 
     return render_template("feed.html", usernames=usernames, checklist=checklist, commits=commits, leng=len(usernames))
     
-@app.route("/explore")
-def visit():
-    user = session["user"]
+@app.route("/<usr>")
+def visit(usr):
+    user = usr
     items = []
     with open('entries.json') as data:
         entry = json.load(data)
@@ -145,13 +145,17 @@ def visit():
 
 @app.route("/<item>")
 def commit(item):
-    with open("entries.json", "r+") as data:
-        json_object = json.load(data)
-        for i in json_object["entries"]:
-            if i["name"] == session["user"]:
-                i["committed"].append(item)
-                print(i["commited"])
-        
+    data = open("entries.json", "r")
+    json_object = json.load(data)
+    data.close()
+    for i in json_object["entries"]:
+        if i["name"] == session["user"]:
+            i["committed"].append(item)
+    print(json_object)
+    data = open("entries.json", "w")
+    json.dump(json_object, data)
+    data.close()
+    flash("Commited Successfully")
     return redirect(url_for("index"))
     
 @app.route("/logout")

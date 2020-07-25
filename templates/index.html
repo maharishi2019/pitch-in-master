@@ -38,7 +38,7 @@
         
         {% for i in same_location %}  
             {% if(i.username != session["user"]) %}
-            <a href = "{{ url_for('visit', usr = i.username) }}">
+            <a href = "{{ url_for('visit', usr=i.username) }}">
                 <h1>{{ i.username }}</h1>
             </a>
             {% endif %}
