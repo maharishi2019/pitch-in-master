@@ -91,10 +91,10 @@ def registration():
 def new_post():
     if(request.method == "POST"):
         new_checklist = request.form["checklist"].split("\r\n")
-        a_file = open("entries.json", "r")
-        json_object = json.load(a_file)
+        with open("entries.json", "r") as a_file:
+            json_object = json.load(a_file)
         a_file.close()
-        session["user"] = self.username
+        session["user"] = username
         for i in json_object["entries"]:
             if i["name"] == session["user"]:
                 i["checklist"] = new_checklist
