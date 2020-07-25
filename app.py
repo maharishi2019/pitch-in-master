@@ -110,9 +110,18 @@ def new_post():
                     checklist = i["checklist"]
         return render_template("new_post.html", checklist=checklist)
 
-@app.route("/feed", methods=["POST", "GET"])
+@app.route("/feed", methods=["GET", "POST"])
 def feed():
-    return render_template("feed.html")
+    if request.method == "GET":
+        with open("entries.json") as file:
+            entries = json.load(file)['entries']
+            usernames, checklist, commits = ([],[],[])
+            for entry in entries:
+                usernames.append(entry["name"])
+                checklist.append(entry["checklist"])
+                commits.append(entry["committed"])
+
+    return render_template("feed.html", usernames=usernames, checklist=checklist, commits=commits)
     
 
 @app.route("/<usr>")
@@ -137,6 +146,25 @@ def logout():
 
 
 
+@app.route("/profile_page")
+def profile_page():
+    return render_template("profile_page.html")
+
+@app.route("/change_password", methods=["POST", "GET"])
+def change_password():
+    if(request.method == "POST"):
+        current_password = request.form["current-password"]
+        new_password = request.form["new-password"]
+
+        if(User.query.filter_by(username=session["user"]).first().password == current_password):
+            User.query.filter_by(username=session["user"]).first().password = new_password
+            flash("Password change successful!")
+            return redirect(url_for("index"))
+        else:
+            flash("Password change unsuccessful!")
+            return redirect(url_for("index"))
+    else:
+        return redirect(url_for("profile_page"))
 if __name__ == "__main__":
     db.create_all()
     app.run(debug=True)
