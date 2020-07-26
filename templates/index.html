@@ -33,16 +33,19 @@
         
         {% for i in same_location %}  
             {% if(i.username != session["user"]) %}
-            <a href = "{{ url_for('visit', usr=i.username) }}">
-                
-                <h1 id = "user_info">{{ i.username }}</h1>
-                <style>
-                    #user_info{
-                        padding:50px
-                        
-                    }
-                </style>
-            </a>
+            <div class="panel my-panel">
+                <a href = "{{ url_for('visit', usr=i.username) }}">
+                    
+                    <h4 id = "user_info">{{ i.username }}</h4>
+                    <style>
+                        #user_info{
+                            padding:50px; 
+                            color: white; 
+                            text-decoration: none; 
+                        }
+                    </style>
+                </a>
+            </div>
             {% endif %}
         {% endfor %}
     {% else %}
@@ -59,41 +62,43 @@
                 </div>
             </div>
         </nav>
-        <section class="team-section text-center my-5">
-            <h2 class="h1-responsive font-weight-bold my-5">Our amazing team</h2>
-            <p class="grey-text w-responsive mx-auto mb-5">Each invidual of our team has come together to build an application
-                that will help people at a significant level. 
-            </p>
-            <div class="row text-center">
-            <div class="col-md-4 mb-md-0 mb-5">
-                <h4 class="font-weight-bold dark-grey-text my-4">Maharishi Rajarethenam</h4>
-                <h6 class="text-uppercase grey-text mb-3"><strong>Designer & Developer</strong></h6>
-            </div>
-            <div class="col-md-4 mb-md-0 mb-5">
-                <h4 class="font-weight-bold dark-grey-text my-4">Mahanth Mohan</h4>
-                <h6 class="text-uppercase grey-text mb-3"><strong>Front-end & Web Developer</strong></h6>
-            </div>
-            <div class="col-md-4">
-                <h4 class="font-weight-bold dark-grey-text my-4">Gaurav Dharmadhikarai</h4>
-                <h6 class="text-uppercase grey-text mb-3"><strong>Back-end Developer</strong></h6>
-            </div>
-            </div>
-        </section>
-        <section class="team-section text-center my-5">
-            <h2 class="h1-responsive font-weight-bold my-5">About</h2>
-            <p class="grey-text w-responsive mx-auto mb-5">
-                Many senior citizens, people with disabilities and
-                life-threatening diseases
-               are restricted from going outside
-               for their own health. This
-               prevents them from shopping for everyday products
-               such as groceries, drinks, etc. Our application, <strong>Pitch-In</strong>,
-               serves as a solution to this problem by allowing people in the same
-               community to help each other retrieve essential goods. 
-               By creating checklists one has the option of asking for certain products
-               and conversly, one may create a commit-list to ensure that you commit to buying and delivering
-               a product. We hope our application will be helpful in aiding people.
-            </p>
-        </section>
+        <div class="not-logged-in-content">
+            <section class="team-section text-center my-5">
+                <h2 class="h1-responsive font-weight-bold my-5">Our amazing team</h2>
+                <p class="grey-text w-responsive mx-auto mb-5">Each invidual of our team has come together to build an application
+                    that will help people at a significant level. 
+                </p>
+                <div class="row text-center">
+                <div class="col-md-4 mb-md-0 mb-5">
+                    <h4 class="font-weight-bold dark-grey-text my-4">Maharishi Rajarethenam</h4>
+                    <h6 class="text-uppercase grey-text mb-3"><strong>Designer & Developer</strong></h6>
+                </div>
+                <div class="col-md-4 mb-md-0 mb-5">
+                    <h4 class="font-weight-bold dark-grey-text my-4">Mahanth Mohan</h4>
+                    <h6 class="text-uppercase grey-text mb-3"><strong>Front-end & Web Developer</strong></h6>
+                </div>
+                <div class="col-md-4">
+                    <h4 class="font-weight-bold dark-grey-text my-4">Gaurav Dharmadhikarai</h4>
+                    <h6 class="text-uppercase grey-text mb-3"><strong>Back-end Developer</strong></h6>
+                </div>
+                </div>
+            </section>
+            <section class="team-section text-center my-5">
+                <h2 class="h1-responsive font-weight-bold my-5">About</h2>
+                <p class="grey-text w-responsive mx-auto mb-5 about-text">
+                    Many senior citizens, people with disabilities and
+                    life-threatening diseases
+                are restricted from going outside
+                for their own health. This
+                prevents them from shopping for everyday products
+                such as groceries, drinks, etc. Our application, <strong>Pitch-In</strong>,
+                serves as a solution to this problem by allowing people in the same
+                community to help each other retrieve essential goods. 
+                By creating checklists one has the option of asking for certain products
+                and conversly, one may create a commit-list to ensure that you commit to buying and delivering
+                a product. We hope our application will be helpful in aiding people.
+                </p>
+            </section>
+        </div>
     {% endif %}
 {% endblock %}

@@ -12,6 +12,20 @@
     margin-top: 20px; 
 }
 
+.my-panel {
+    width: 50%; 
+    margin-left: 30px; 
+    margin-top: 20px; 
+    box-shadow: 1px 1px 5px black; 
+}
 body {
-    background-image: url(images/purple_background.jpg)
+    background-image: url(images/purple_background.jpg); 
+}
+
+.not-logged-in-content {
+    color: white; 
+}
+
+.about-text {
+    width: 65%; 
 }
