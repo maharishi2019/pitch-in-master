@@ -148,7 +148,6 @@ def commited(item):
     for i in json_object["entries"]:
         if i["name"] == session["user"]:
             i["committed"].append(item)
-    print(json_object)
     data = open("entries.json", "w")
     json.dump(json_object, data)
     data.close()
