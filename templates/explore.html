@@ -22,10 +22,12 @@
     </nav>
     <h2>{{user}}'s Page</h2>
     {% for i in items %}
-    <div class="card" style="width:400px">
-        <div class="card-body">
-            <h4 class="card-title">{{ i }}</h4>
-            <a href="{{ url_for('commited', item=i)}}">Commit</a>
+    <div class="row">
+        <div class="card" style="width:400px">
+            <div class="card-body">
+                <h4 class="card-title">{{ i }}</h4>
+                <a href="{{ url_for('commited', item=i)}}">Commit</a>
+            </div>
         </div>
     </div>
     {% endfor %}
