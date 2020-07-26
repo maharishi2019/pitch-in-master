@@ -120,11 +120,13 @@ def feed():
     if request.method == "GET":
         with open("entries.json") as file:
             entries = json.load(file)["entries"]
-            usernames, checklist, commits = ([],[],[])
+            usernames, checklist, commits, committed_to = ([],[],[],[])
             for entry in entries:
                 usernames.append(entry["name"])
                 checklist.append(entry["checklist"])
-                commits.append(entry["committed"])
+                for element in entry:
+                    if element == entry["committed"]:
+                        commits.append(str(entry["committed"]) + f" {str(element)}")
 
     return render_template("feed.html", usernames=usernames, checklist=checklist, commits=commits, leng=len(usernames))
     
@@ -196,6 +198,7 @@ def change_email():
             return redirect(url_for("index"))
     else:
         return redirect(url_for("profile_page"))
+        
 if __name__ == "__main__":
     db.create_all()
     app.run(debug=True)
