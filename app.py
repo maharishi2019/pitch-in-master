@@ -126,7 +126,7 @@ def feed():
                 checklist.append(entry["checklist"])
                 for element in entry:
                     if element == entry["committed"]:
-                        commits.append(str(entry["committed"]) + f" {str(element)}")
+                        commits.append(str(entry["committed"]) + " " + str(entry["name"]))
 
     return render_template("feed.html", usernames=usernames, checklist=checklist, commits=commits, leng=len(usernames))
     
