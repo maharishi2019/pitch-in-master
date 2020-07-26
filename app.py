@@ -65,8 +65,6 @@ def registration():
             return redirect(url_for("registration"))
         else:
             new_user = User(username, password, email, location)
-            print(location)
-
             db.session.add(new_user)
             db.session.commit()
 
@@ -89,7 +87,6 @@ def registration():
             a_file = open("entries.json", "w")
             json.dump(json_object, a_file)
             a_file.close()
-
             return redirect(url_for("index"))
     else:
         return render_template("registration.html")
