@@ -20,19 +20,15 @@
             </div>
         </div>
     </nav>
-    <div style="padding-left: 15px; padding-top: 15px;">
-        <h2>{{ user }}</h2>
-        <br>
-        <h3>Items: </h3>
-    </div>
+    <h2 style="color: white;">{{user}}'s Page</h2>
     {% for i in items %}
-
-    <div class="card-body text-center" style="color: white; width: 25%;">
-        <div class="card bg-primary">
-            <h4 class="card-text">{{ i }}</h4>
-            <a href="{{ url_for('commited', item=i)}}" style="color: white;">Commit</a>
+    <div class="row">
+        <div class="card" style="width:400px">
+            <div class="card-body">
+                <h4 class="card-title">{{ i }}</h4>
+                <a href="{{ url_for('commited', item=i)}}">Commit</a>
+            </div>
         </div>
     </div>
-    
     {% endfor %}
 {% endblock %}
