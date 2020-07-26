@@ -120,14 +120,11 @@ def feed():
     if request.method == "GET":
         with open("entries.json") as file:
             entries = json.load(file)["entries"]
-            usernames, checklist, commits, committed_to = ([],[],[],[])
+            usernames, checklist, commits = ([],[],[])
             for entry in entries:
                 usernames.append(entry["name"])
                 checklist.append(entry["checklist"])
-                for element in entry:
-                    if element == entry["committed"]:
-                        commits.append(str(entry["committed"]) + " " + str(entry["name"]))
-
+                commits.append(entry["committed"])
     return render_template("feed.html", usernames=usernames, checklist=checklist, commits=commits, leng=len(usernames))
     
 @app.route("/<usr>")
