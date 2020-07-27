@@ -19,11 +19,17 @@
     box-shadow: 1px 1px 5px black; 
 }
 body {
-    background-image: url(images/purple_background.jpg); 
+    background-image: url(images/purple_background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+navbar navbar-expand-lg navbar-light bg-light {
+    padding: 15px
 }
 
 .not-logged-in-content {
-    color: white; 
+    color: white;
 }
 
 .about-text {
