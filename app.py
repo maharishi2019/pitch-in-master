@@ -39,7 +39,7 @@ def login():
         #validation for if user exists and if the password matches or not 
         if(len(User.query.filter_by(username=username).all()) > 0):
             if(User.query.filter_by(username=username).first().password == password):
-                session.permenant = True
+                session.permanent = True
                 session["user"] = username
                 session["logged_in"] = True
                 return redirect(url_for("index"))
@@ -68,7 +68,7 @@ def registration():
             db.session.add(new_user)
             db.session.commit()
 
-            session.permenant = True
+            session.permanent = True
             session["user"] = username
             session["logged_in"] = True
 
