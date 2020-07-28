@@ -1,1 +1,1 @@
-web: gunicorn pitch-in-master.wsgi
+web: gunicorn app:app
