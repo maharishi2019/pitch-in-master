@@ -140,17 +140,20 @@ def visit(usr):
     return render_template("explore.html", user=user, items=items)
 
 @app.route("/commit/<item>")
-def commited(item):
+def committed(item):
     data = open("entries.json", "r")
     json_object = json.load(data)
     data.close()
     for i in json_object["entries"]:
         if i["name"] == session["user"]:
-            i["committed"].append(item)
+            for k in range(len(i["checklist"])):
+                if i["checklist"][k] == item or item in checklist[k].split(","):  
+                    item = f'{item} ({i["name"]})'
+                    i["committed"].append(item)
     data = open("entries.json", "w")
     json.dump(json_object, data)
     data.close()
-    flash("Commited Successfully")
+    flash("committed Successfully")
     return redirect(url_for("index"))
     
 @app.route("/logout")
