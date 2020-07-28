@@ -1,0 +1,8 @@
+flask
+gunicorn
+werkzeug
+flask_sqlalchemy
+sqlite3
+pipenv
+virtualenv
+requests
