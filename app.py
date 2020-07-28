@@ -144,12 +144,13 @@ def committed(item):
     data = open("entries.json", "r")
     json_object = json.load(data)
     data.close()
-    for i in json_object["entries"]:
-        if i["name"] == session["user"]:
-            for k in range(len(i["checklist"])):
-                if i["checklist"][k] == item or item in checklist[k].split(","):  
-                    item = f'{item} ({i["name"]})'
-                    i["committed"].append(item)
+    for v in json_object["entries"]:
+        if item in v["committed"]:
+            item = f'{item} ({v["name"]})'
+        if v["name"] == session["user"]:
+            v["committed"].append(item)
+        else:
+            pass
     data = open("entries.json", "w")
     json.dump(json_object, data)
     data.close()
