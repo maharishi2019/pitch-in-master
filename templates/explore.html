@@ -24,9 +24,9 @@
     {% for i in items %}
     <div class="row" style="padding: 15px;">
         <div class="card" style="width:400px">
-            <div class="card-body">
+            <div class="card-body" style="text-align: center;">
                 <h4 class="card-title">{{ i }}</h4>
-                <a href="{{ url_for('commited', item=i)}}">Commit</a>
+                <a href="{{ url_for('committed', item=i, user=user)}}" style="text-decoration: none;"> Commit</a>
             </div>
         </div>
     </div>

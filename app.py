@@ -10,7 +10,9 @@ app.secret_key = "c2cf45d51cf3e8615ff0d24e6bd51fc3"
 db = SQLAlchemy(app)
 
 class User(db.Model):
+    # The id variable contains the id of every table and item in the database
     _id = db.Column(db.Integer, primary_key=True)
+    # 255 is the largest characteer entry that can be stored in a database
     username = db.Column(db.String(255))
     email = db.Column(db.String(255))
     password = db.Column(db.String(255))
@@ -39,7 +41,7 @@ def login():
         #validation for if user exists and if the password matches or not 
         if(len(User.query.filter_by(username=username).all()) > 0):
             if(User.query.filter_by(username=username).first().password == password):
-                session.permenant = True
+                session.permanent = True
                 session["user"] = username
                 session["logged_in"] = True
                 return redirect(url_for("index"))
@@ -68,7 +70,7 @@ def registration():
             db.session.add(new_user)
             db.session.commit()
 
-            session.permenant = True
+            session.permanent = True
             session["user"] = username
             session["logged_in"] = True
 
@@ -139,18 +141,18 @@ def visit(usr):
                 items = i["checklist"]
     return render_template("explore.html", user=user, items=items)
 
-@app.route("/commit/<item>")
-def commited(item):
+@app.route("/commit/<user>/<item>")
+def committed(user, item):
     data = open("entries.json", "r")
     json_object = json.load(data)
     data.close()
     for i in json_object["entries"]:
         if i["name"] == session["user"]:
-            i["committed"].append(item)
+            i["committed"].append(f'{item} ({user})')
     data = open("entries.json", "w")
     json.dump(json_object, data)
     data.close()
-    flash("Commited Successfully")
+    flash("committed Successfully")
     return redirect(url_for("index"))
     
 @app.route("/logout")
