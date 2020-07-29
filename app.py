@@ -141,16 +141,14 @@ def visit(usr):
                 items = i["checklist"]
     return render_template("explore.html", user=user, items=items)
 
-@app.route("/commit/<item>")
-def committed(item):
+@app.route("/commit/<user>/<item>")
+def committed(user, item):
     data = open("entries.json", "r")
     json_object = json.load(data)
     data.close()
-    for v in json_object["entries"]:
-        if item in v["committed"]:
-            item = f'{item} ({v["name"]})'
-        if v["name"] == session["user"]:
-            v["committed"].append(item)
+    for i in json_object["entries"]:
+        if i["name"] == session["user"]:
+            i["committed"].append(f'{item} ({user})')
     data = open("entries.json", "w")
     json.dump(json_object, data)
     data.close()
