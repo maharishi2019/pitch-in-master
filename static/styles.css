@@ -20,6 +20,8 @@
 }
 body {
     background-image: url(images/purple_background.jpg);
+    width: auto;
+    height: auto;
     background-repeat: no-repeat;
     background-size: cover;
 }
