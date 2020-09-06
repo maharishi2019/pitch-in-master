@@ -29,10 +29,6 @@ body {
     background-size: cover;
 }
 
-navbar navbar-expand-lg navbar-light bg-light {
-    padding: 15px
-}
-
 .not-logged-in-content {
     color: white;
 }
